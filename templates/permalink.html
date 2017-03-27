@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render(user) | safe}}
+  <br>
+  <a href="/blog/newcomment/{{post.key().id()}}">comment this post</a>
+  <br><br>
+  <h3 class="comments">Comments to this post</h3>
+  <div class="comments">
+  {% for comment in comments %}
+    {{ comment.render(user, post) | safe}}
+    <br>
+  {% endfor %}
+  </div>
+{% endblock %}

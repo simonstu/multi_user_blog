@@ -1,0 +1,26 @@
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      <a href="/blog/{{p.key().id()}}">{{p.subject}}{{t}}</a>
+      {% if u %}
+        {% if u.key().id() ==  p.creator %}
+          <span class="editpost_container"><a href="/blog/editpost/{{p.key().id()}}">edit your post</a> | <a href="/blog/deletepost/{{p.key().id()}}">delete your post</a></span>
+        {% else %}
+          {% if postLiked %}
+            <span class="editpost_container"><a href="/blog/removelikepost/{{p.key().id()}}">remove your like</a></span>
+          {% else %}
+            <span class="editpost_container"><a href="/blog/likepost/{{p.key().id()}}">like this post</a></span>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div class="post-content">
+    {{p._render_text | safe}}
+  </div>
+</div>

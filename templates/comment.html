@@ -1,0 +1,20 @@
+<div class="comment">
+  <div class="comment-heading">
+    <div class="comment-title">
+      {{c.subject}}
+      {% if u %}
+        {% if u.key().id() ==  c.creator %}
+          <span class="editcomment_container"><a href="/blog/editcomment/{{p.key().id()}}/{{c.key().id()}}">edit your comment</a> | <a href="/blog/deletecomment/{{p.key().id()}}/{{c.key().id()}}">delete your comment</a></span>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="comment-date">
+      {{c.created.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div class="comment-content">
+    {{c._render_text | safe}}
+  </div>
+</div>
